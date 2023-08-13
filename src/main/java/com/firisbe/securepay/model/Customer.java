@@ -23,9 +23,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customer_id;
 
-    @Column(nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerNumber;
+    @Column(unique = true)
+    private long customerNumber;
 
     @Column(nullable = false, length = 50)
     private String name;
@@ -37,7 +36,7 @@ public class Customer {
     private String email;
 
     @Column(nullable = false, length = 10)
-    private int phoneNumber; //+90 değeri girilmez!!
+    private String phoneNumber; //+90 değeri girilmez!!
 
     @Column(nullable = false, length = 255)
     private String address;

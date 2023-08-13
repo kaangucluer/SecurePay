@@ -37,15 +37,15 @@ public class CustomerController {
                 .body(customerService.getAllCustomer());
     }
 
-    @DeleteMapping("/customers/{id}")
-    public ResponseEntity<String> deleteCustomer(@PathVariable Long customer_id) {
-        customerService.deleteCustomerById(customer_id);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomerById(id);
         return ResponseEntity.ok("Customer deleted successfully");
     }
 
-    @PutMapping("/customers/{id}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long customer_id, @RequestBody Customer updatedCustomer) {
-        Customer customer = customerService.updateCustomer(customer_id, updatedCustomer);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer updatedCustomer) {
+        Customer customer = customerService.updateCustomer(id, updatedCustomer);
         return ResponseEntity.ok(customer);
     }
 

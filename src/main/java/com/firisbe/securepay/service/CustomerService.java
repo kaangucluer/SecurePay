@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CustomerService {
@@ -26,12 +27,17 @@ public class CustomerService {
 
     public Customer saveCustomer(Customer customer){
         try{
+            Random random = new Random();
+            long randomCustomerNumber = random.nextInt(2147483647);
+
+            customer.setCustomerNumber(randomCustomerNumber);
+
             return customerRepository.save(customer);
         } catch (DataIntegrityViolationException ex){
-            String errorMessage = "Error: E-mail already exists.";
+            String errorMessage = "Error: E-mail/tcNo already exists.";
             Log log = new Log();
             log.setTimestamp(LocalDateTime.now());
-            log.setLevel("E-mail ERROR");
+            log.setLevel("E-mail/tcNo ERROR");
             log.setMessage(errorMessage);
             logRepository.save(log);
             throw new IllegalArgumentException(errorMessage, ex);
@@ -41,13 +47,13 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public void deleteCustomerById(Long customer_id) {
-        customerRepository.deleteById(customer_id);
+    public void deleteCustomerById(Long id) {
+        customerRepository.deleteById(id);
     }
 
-    public Customer updateCustomer(Long customer_id, Customer updatedCustomer) {
+    public Customer updateCustomer(Long id, Customer updatedCustomer) {
         try {
-            Customer existingCustomer = customerRepository.findById(customer_id)
+            Customer existingCustomer = customerRepository.findById(id)
                     .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
             existingCustomer.setName(updatedCustomer.getName());
             existingCustomer.setTcNo(updatedCustomer.getTcNo());
