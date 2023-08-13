@@ -13,7 +13,9 @@ public interface CreditCardRepository extends JpaRepository <CreditCard,Long> {
     @Query("SELECT c.debtAmount FROM CreditCard c WHERE c.cardNumber = :cardNumber")
     BigDecimal getDebtAmountByCardNumber(@Param("cardNumber") int cardNumber);
 
+    @Query("SELECT p FROM Payment p WHERE p.creditCard.cardNumber = :cardNumber")
+    List<Payment> findPaymentsByCardNumber(@Param("cardNumber") Long cardNumber);
     List<CreditCard> findAllByOrderByPaymentDeadlineAsc();
 
-    List<Payment> findByCardNumber(int cardNumber);
+    List<Payment> findByCardNumber(Long cardNumber);
 }

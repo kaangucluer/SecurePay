@@ -34,10 +34,10 @@ public class CustomerService {
 
             return customerRepository.save(customer);
         } catch (DataIntegrityViolationException ex){
-            String errorMessage = "Error: E-mail/tcNo already exists.";
+            String errorMessage = "Error: E-mail_tcNo_email already exists.";
             Log log = new Log();
             log.setTimestamp(LocalDateTime.now());
-            log.setLevel("E-mail/tcNo ERROR");
+            log.setLevel("E-mail_tcNo_email ERROR");
             log.setMessage(errorMessage);
             logRepository.save(log);
             throw new IllegalArgumentException(errorMessage, ex);

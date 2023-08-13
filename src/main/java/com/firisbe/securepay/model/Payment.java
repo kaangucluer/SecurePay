@@ -1,6 +1,7 @@
 package com.firisbe.securepay.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,18 +22,14 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal paymentAmount;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate paymentDate;
-
-    @PrePersist
-    protected void onCreate() {
-        paymentDate = LocalDate.now(); // Yeni ödeme oluşturulduğunda anlık tarihi atar
-    }
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
+    @NotNull
     @OneToOne
     @JoinColumn(name = "creditCard_id")
     private CreditCard creditCard;

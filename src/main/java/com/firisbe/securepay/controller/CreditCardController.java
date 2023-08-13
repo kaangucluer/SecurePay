@@ -5,10 +5,7 @@ import com.firisbe.securepay.model.Payment;
 import com.firisbe.securepay.service.CreditCardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,16 @@ public class CreditCardController {
         this.creditCardService = creditCardService;
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<CreditCard> addCreditCard(@RequestBody CreditCard creditCard) {
+        try {
+            CreditCard savedCreditCard = creditCardService.addCreditCard(creditCard);
+            return new ResponseEntity<>(savedCreditCard, HttpStatus.CREATED);
+        } catch (IllegalArgumentException ex) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
     @GetMapping("/allByPaymentDeadlineAsc")
     public ResponseEntity<List<CreditCard>> getAllCreditCardsByPaymentDeadlineAsc() {
@@ -30,8 +37,8 @@ public class CreditCardController {
 
 
     @GetMapping("/byCardNumber/{cardNumber}")
-    public ResponseEntity<List<Payment>> getPaymentsByCardNumber(@PathVariable String cardNumber) {
-        List<Payment> payments = creditCardService.getPaymentsByCardNumber(cardNumber);
+    public ResponseEntity<List<Payment>> getPaymentsByCardNumber(@PathVariable Long cardNumber) {
+        List<Payment> payments = creditCardService.getPaymentsByCardNumber(Long.valueOf(cardNumber));
         return ResponseEntity.ok(payments);
     }
 }

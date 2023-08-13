@@ -19,9 +19,9 @@ public class CreditCard {
     private Long creditCard_id;
 
     @Column(nullable = false, unique = true, length = 16)
-    private int cardNumber;
+    private Long cardNumber;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate expirationDate;
 
     @Column(nullable = false, length = 3)
