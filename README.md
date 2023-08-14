@@ -58,15 +58,21 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 <img src="images/swagger.png" alt="Swagger">
 
 <b>GET customer/all :</b>  Tüm kullanıcıları listeleyen bir GET isteği.
+
 <b>POST customer/save :</b> Yeni kullanıcı oluşturan bir POST isteği.
+
 <b>DELETE /customer/delete/{id} :</b> Id si girilen kullanıcıyı silen bir DELETE isteği. 
+
 <b>PUT /customer/update/{id} :</b> Id si girilen kullanıcıyı güncelleyen bir PUT isteği.
 
 <b>GET /payment/all :</b> Tüm ödeme bilgilerini listeleyen bir GET isteği.
+
 <b>POST /payment/save :</b> Yeni ödeme oluşturan POST isteği.
 
 <b>GET /creditCard/allByPaymentDeadlineAsc :</b> Son ödeme tarihine göre Ödemeleri Listeleyen GET isteği.
+
 <b>GET /creditCard/byCardNumber/{id}</b> Id kısmına girilen Kart Numarasına göre ödeme Listeleyen GET isteği.
+
 <b>POST /creditCard/add :</b> Yeni Kredi Kartı oluşturan POST isteği.
 
 <b>GET /log/all :</b> Tüm Logları Listeleyen bir GET isteği.
