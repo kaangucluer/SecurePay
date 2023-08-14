@@ -19,6 +19,7 @@ Proje Taslağını Oluşturma:</b> İncelemelerim ve analizlerimin ardından, pr
 
 <b>Unit Test Yazma:</b> Her bir fonksiyonu ve modülü ayrı ayrı test ederek, projenin istikrarlı ve hata olmadan çalışmasını sağladım. Bu aşama, projenin güvenilir ve hatalardan arındırılmış bir şekilde gelişmesini sağladı.</p>
 
+
 <h2>Teknoloji Yığını ve Bağımlılıklar</h2>
 
 <p>
