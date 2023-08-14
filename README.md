@@ -27,8 +27,12 @@ Proje Taslağını Oluşturma:</b> İncelemelerim ve analizlerimin ardından, pr
 Projemi Java 17 versiyonuyla geliştireceğim ve bu projeyi bir Maven projesi olarak oluşturacağım. Aynı zamanda Spring Boot'un 3.1.2 versiyonunu kullanacağım. Geliştireceğim projede kullanacağım bağımlılıkları "Dependencies" (Bağımlılıklar) bölümünde belirleyeceğim. Bu bağımlılıklar şunlar olacak: Spring Web, Spring Data JPA, H2 Database, Lombok, Validation ve OpenAPI.</p>
 
 <h2>H2 Database Ayarları</h2>
-<p>Projemizde application.properties kısmına H2 database ayarlarını yazacağız.
-#Db connection =http://localhost:8081/h2-console/ (Consolun hangi uzantıda çalışacağını belirtiyorum)
+<img src="images/properties.png" alt="Properties">
+<p>Projemizde application.properties kısmına H2 database ayarlarını ve portumuzun 8081 de çalışacagını yazacağız.
+
+server.port=8081
+#Swagger url = http://localhost:8081/swagger-ui/index.html (Swaggerın hangi uzantıda çalıştıgını belirtiyorum)
+#Db connection =http://localhost:8081/h2-console/ (Consolun hangi uzantıda çalıştıgını belirtiyorum)
 spring.h2.console.enabled=true
 spring.datasource.url=jdbc:h2:mem:dcbapp
 spring.datasource.driverClassName=org.h2.Driver
