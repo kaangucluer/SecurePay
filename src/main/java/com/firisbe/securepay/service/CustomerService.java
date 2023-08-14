@@ -25,23 +25,21 @@ public class CustomerService {
         return log;
     }
 
-    public Customer saveCustomer(Customer customer){
-        try{
-            Random random = new Random();
-            long randomCustomerNumber = random.nextInt(2147483647);
-
-            customer.setCustomerNumber(randomCustomerNumber);
-
-            return customerRepository.save(customer);
-        } catch (DataIntegrityViolationException ex){
-            String errorMessage = "Error: E-mail_tcNo_email already exists.";
+    public Customer saveCustomer(Customer customer) {
+        Customer existingCustomer = customerRepository.findByEmailAndTcNo(customer.getEmail(), customer.getTcNo());
+        if (existingCustomer != null) {
             Log log = new Log();
             log.setTimestamp(LocalDateTime.now());
             log.setLevel("E-mail_tcNo_email ERROR");
-            log.setMessage(errorMessage);
+            log.setMessage("Customer already exists");
             logRepository.save(log);
-            throw new IllegalArgumentException(errorMessage, ex);
+
+            throw new DataIntegrityViolationException("Customer already exists");
         }
+
+        customer.setCustomerNumber(new Random().nextInt(2147483647));
+
+        return customerRepository.save(customer);
     }
     public List<Customer> getAllCustomer() {
         return customerRepository.findAll();
@@ -72,7 +70,7 @@ public class CustomerService {
 
 
     public CustomerService(CustomerRepository customerRepository, LogRepository logRepository) {
-        this.customerRepository = customerRepository;    // Dependency Injection
+        this.customerRepository = customerRepository;
         this.logRepository = logRepository;
     }
 

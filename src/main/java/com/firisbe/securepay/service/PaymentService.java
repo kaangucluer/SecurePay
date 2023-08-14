@@ -21,7 +21,7 @@ public class PaymentService {
     public Payment savePayment(Payment payment) {
         BigDecimal paymentAmount = payment.getPaymentAmount();
         CreditCard creditCard = payment.getCreditCard();
-        if (creditCard == null) {
+        if (payment.getCreditCard() == null) {
             String errorMessage = "Error: Credit Card is missing.";
             Log log = new Log();
             log.setTimestamp(LocalDateTime.now());

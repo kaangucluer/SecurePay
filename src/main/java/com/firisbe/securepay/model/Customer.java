@@ -1,6 +1,5 @@
 package com.firisbe.securepay.model;
 
-import io.swagger.annotations.ApiModel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,16 +7,13 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
- /*
-    Tanımladığım tablo sutunlarıma length değeri vererek programıma script yazılmasını önlüyorum.
-    tcNo ve phoneNumber değişkenlerimi Uygulamamı Türkiye için düşünerek yaptım ve lenght değeri verdim.
- */
+
 @Entity
 @Getter
 @Setter
 @ToString
 @Table(name = "customers")
-@ApiModel(value="User Api Doc",description="Model")
+
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,17 +1,11 @@
 package com.firisbe.securepay.controller;
 
 import com.firisbe.securepay.model.Customer;
-import com.firisbe.securepay.model.Log;
 import com.firisbe.securepay.service.CustomerService;
-import com.firisbe.securepay.service.LogService;
-import io.swagger.annotations.Api;
-import org.apache.el.util.ExceptionUtils;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -32,7 +26,7 @@ public class CustomerController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Customer>> getAllCustomer(){
+    public ResponseEntity<List<Customer>> getAllCustomer() {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(customerService.getAllCustomer());
     }
